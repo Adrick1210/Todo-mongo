@@ -24,6 +24,9 @@ app.get("/", (req, res) => {
 });
 
 // Index
+app.get("/todos", (req,res) => {
+    res.render("index.ejs");
+});
 
 // New
 
