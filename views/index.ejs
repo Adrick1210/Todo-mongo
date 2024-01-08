@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include("./partials/head.ejs") %>
-<body>
+  <%- include("./partials/head.ejs") %>
+  <body>
     <h1>Todo List</h1>
-</body>
+    <%- include("./partials/nav.ejs") %>
+    <div class="main-container">
+      <div class="todo-card">
+        <ul class="todo-list">
+            <% for(let i = 0; i < todos.length; i++) { %>
+            <a href="/todos/<%= i %>"><h2><%= todos[i].title %></h2></a>
+            <p><%= todos[i].description %></p>
+            <h3><%= todos[i].isComplete ? "Completed" : "Not Complete" %></h3>
+            <div class="buttons">
+              <a href="/todos/<%= i %>/edit"><button>Edit</button></a>
+              <form action="/todos/<%= i %>/?_method=DELETE" method="post">
+                <button>Delete</button>
+              </form>
+            </div>
+            <% } %>
+          </ul>
+      </div>
+    </div>
+  </body>
 </html>
