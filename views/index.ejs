@@ -8,7 +8,7 @@
       <div class="todo-card">
         <ul class="todo-list">
             <% for(let i = 0; i < todos.length; i++) { %>
-            <a href="/todos/<%= i %>"><h2><%= todos[i].title %></h2></a>
+            <a href="/todos/<%= todos[i]._id %>"><%= todos[i].title %></a>
             <p><%= todos[i].description %></p>
             <h3><%= todos[i].isComplete ? "Completed" : "Not Complete" %></h3>
             <div class="buttons">

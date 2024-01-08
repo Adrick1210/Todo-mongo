@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 // Seed
-app.get("/todos/seed", async (req, res) => {
+app.get("/seed", async (req, res) => {
   try {
     await Todo.deleteMany({});
     const todos = await Todo.create(seedData);
@@ -39,7 +39,7 @@ app.get("/todos/seed", async (req, res) => {
 // Index
 app.get("/todos", async (req, res) => {
   try {
-    let todos = await Todo.find({});
+    const todos = await Todo.find({});
     res.render("index.ejs", { todos });
   } catch (error) {
     console.log("-----", error.message, "-----");
@@ -58,6 +58,16 @@ app.get("/todos", async (req, res) => {
 // Destroy
 
 // Show
+app.get("/todos/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const todos = await Todo.findById(id);
+    res.render("show.ejs", { todos, id });
+  } catch (error) {
+    console.log("-----", error.message, "-----");
+    res.status(400).send("error, read logs for error details");
+  }
+});
 
 // LISTENER
 app.listen(PORT, () => console.log(`Time to organize Port ${PORT}`));

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <a href="/todos">Back to List</a>
+    <div class="todo-show">
+      <h2><%= todos.title %></h2>
+      <p><%= todos.description %></p>
+      <h3><%= todos.isComplete ? "Completed" : "Not Complete" %></h3>
+      <div class="buttons-show">
+        <a href="/todos/<%= id %>/edit"><button>Edit</button></a>
+        <form action="/todos/<%= id %>/?_method=DELETE" method="post">
+          <button>Delete</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
